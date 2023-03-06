@@ -2,21 +2,23 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"strconv"
 
 	"github.com/xluohome/phonedata"
 )
 
 func main() {
 
-	if len(os.Args) < 2 {
-		fmt.Print("请输入手机号")
-		return
+	var phone_num = 1300000
+	for {
+		if phone_num > 1999999 {
+			break
+		}
+		phone_num++
+		pr, err := phonedata.Find(strconv.Itoa(phone_num))
+		if err == nil {
+			fmt.Printf("%s,%s,%s,%s,%s,%s \n",
+				pr.AreaZone, pr.CardType, pr.City, pr.PhoneNum, pr.Province, pr.ZipCode)
+		}
 	}
-	pr, err := phonedata.Find(os.Args[1])
-	if err != nil {
-		fmt.Printf("%s", err)
-		return
-	}
-	fmt.Print(pr)
 }
