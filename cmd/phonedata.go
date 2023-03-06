@@ -14,8 +14,8 @@ func main() {
 		if phone_num > 1999999 {
 			break
 		}
-		phone_num++
 		pr, err := phonedata.Find(strconv.Itoa(phone_num))
+		phone_num++
 		if err == nil {
 			fmt.Printf("%s,%s,%s,%s,%s,%s \n",
 				pr.AreaZone, pr.CardType, pr.City, pr.PhoneNum, pr.Province, pr.ZipCode)
